@@ -350,7 +350,7 @@ class DistGit(object):
 
             if user:
                 cmd += ['--user', user]
-            cmd += ["-q", "clone", "-b", self.branch, self.repo, self.output]
+            cmd += ["-v", "clone", "-b", self.branch, self.repo, self.output]
             LOGGER.debug("Cloning: '{}'".format(' '.join(cmd)))
             subprocess.check_call(cmd)
             LOGGER.debug("Repository {} cloned".format(self.repo))
@@ -430,7 +430,7 @@ class DistGit(object):
         if self.noninteractive or tools.decision("Do you want to push the commit?"):
             print("")
             LOGGER.info("Pushing change to the upstream repository...")
-            cmd = ["git", "push", "-q", "origin", self.branch]
+            cmd = ["git", "push", "-v", "origin", self.branch]
             LOGGER.debug("Running command '{}'".format(' '.join(cmd)))
             subprocess.check_call(cmd)
             LOGGER.info("Change pushed.")
